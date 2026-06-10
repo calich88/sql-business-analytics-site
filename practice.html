@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Practice - MIS 443</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="MIS 443 home">
+        <span class="brand-mark">MIS 443</span>
+        <span>Business Data Management</span>
+      </a>
+      <nav class="nav" aria-label="Course navigation">
+        <a href="index.html">Overview</a>
+        <a href="dataset.html">Dataset</a>
+        <a href="cheatsheets.html">Cheatsheets</a>
+        <a href="practice.html">Practice</a>
+        <a href="tools.html">Tools</a>
+        <a href="mooc.html">MOOC</a>
+        <a href="project.html">Project</a>
+        <a href="quiz.html">Quiz</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero compact">
+        <div>
+          <p class="eyebrow">Practice Menu</p>
+          <h1>Mapping exercises and weekly SQL labs</h1>
+          <p class="hero-text">
+            Practice activities are adapted from the book's PostgreSQL code/data repository
+            and aligned with the MIS 443 syllabus. Heavy database-engineering chapters are
+            kept as optional reading, while labs focus on business analytics skills.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-band muted">
+        <div class="section-heading">
+          <p class="eyebrow">Chapter Practice Pages</p>
+          <h2>Workbook pages generated from chapter code files</h2>
+        </div>
+        <div class="resource-grid chapter-practice-links" id="chapterPracticeLinks"></div>
+
+        <div class="mapping-panel">
+          <div class="mapping-header">
+            <h3>Mapping Exercise</h3>
+            <p>Theory from syllabus is paired with selected practice chapters and a concrete lab output.</p>
+          </div>
+          <div class="mapping-table-wrap">
+            <table class="mapping-table" id="mappingTable"></table>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <footer>
+      <p>MIS 443 - Practice</p>
+      <p>Selected Packt exercises mapped to syllabus topics.</p>
+      <p>Author: BBS - SMABI LAB</p>
+    </footer>
+
+    <script src="chapter-workbooks.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

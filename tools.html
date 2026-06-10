@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tools - MIS 443</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="MIS 443 home">
+        <span class="brand-mark">MIS 443</span>
+        <span>Business Data Management</span>
+      </a>
+      <nav class="nav" aria-label="Course navigation">
+        <a href="index.html">Overview</a>
+        <a href="dataset.html">Dataset</a>
+        <a href="cheatsheets.html">Cheatsheets</a>
+        <a href="practice.html">Practice</a>
+        <a href="tools.html">Tools</a>
+        <a href="mooc.html">MOOC</a>
+        <a href="project.html">Project</a>
+        <a href="quiz.html">Quiz</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero compact">
+        <div>
+          <p class="eyebrow">Database and Python Tools</p>
+          <h1>Tools for SQL and Business Data Analytics</h1>
+          <p class="hero-text">
+            This page introduces the main database systems, SQL clients, and Python
+            libraries students may encounter in business analytics. For MIS 443,
+            PostgreSQL is the primary database, with Python/Jupyter used for analysis
+            and reporting workflows.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <div class="section-heading">
+          <p class="eyebrow">Recommended First</p>
+          <h2>Primary course setup</h2>
+        </div>
+        <div class="tool-feature">
+          <article class="tool-card featured">
+            <div>
+              <span class="tool-type">Primary DBMS</span>
+              <h3>PostgreSQL</h3>
+              <p>
+                PostgreSQL is the main database system for this course and for the
+                book code. Students use it to restore the <code>sqlda</code> database,
+                run SQL exercises, practice joins, CTEs, window functions, JSONB,
+                and connect to Python.
+              </p>
+            </div>
+            <div class="tool-actions">
+              <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer">Official site</a>
+              <a href="https://www.postgresql.org/download/" target="_blank" rel="noreferrer">Download</a>
+              <a href="https://www.pgadmin.org/download/" target="_blank" rel="noreferrer">pgAdmin</a>
+            </div>
+          </article>
+          <article class="tool-card featured secondary-feature">
+            <div>
+              <span class="tool-type">Course Runtime</span>
+              <h3>Python + Jupyter Notebook</h3>
+              <p>
+                Python is used for reading SQL results, preparing reports, exporting
+                files, and creating charts. Jupyter Notebook is convenient for step-by-step
+                analytics work and assignment documentation.
+              </p>
+            </div>
+            <div class="tool-actions">
+              <a href="https://www.python.org/downloads/" target="_blank" rel="noreferrer">Python download</a>
+              <a href="https://jupyter.org/install" target="_blank" rel="noreferrer">Jupyter install</a>
+              <a href="https://www.anaconda.com/download" target="_blank" rel="noreferrer">Anaconda</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-band muted">
+        <div class="section-heading">
+          <p class="eyebrow">Database Engines</p>
+          <h2>Popular database systems</h2>
+        </div>
+        <div class="tool-grid">
+          <article class="tool-card">
+            <span class="tool-type">Open-source relational</span>
+            <h3>PostgreSQL</h3>
+            <p>Best fit for this course, analytics SQL, JSONB, CTEs, window functions, and Python connections.</p>
+            <div class="tool-actions">
+              <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://www.postgresql.org/download/" target="_blank" rel="noreferrer">Download</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">Open-source relational</span>
+            <h3>MySQL</h3>
+            <p>Common in web applications and business systems; useful for learning SQL dialect differences.</p>
+            <div class="tool-actions">
+              <a href="https://www.mysql.com/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://dev.mysql.com/downloads/" target="_blank" rel="noreferrer">Download</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">Open-source relational</span>
+            <h3>MariaDB</h3>
+            <p>MySQL-compatible database used in many server environments and open-source stacks.</p>
+            <div class="tool-actions">
+              <a href="https://mariadb.org/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://mariadb.org/download/" target="_blank" rel="noreferrer">Download</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">Embedded database</span>
+            <h3>SQLite</h3>
+            <p>Small, serverless database engine; useful for demos, local files, and browser-based SQLite/WASM practice.</p>
+            <div class="tool-actions">
+              <a href="https://www.sqlite.org/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://www.sqlite.org/download.html" target="_blank" rel="noreferrer">Download</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">Analytics database</span>
+            <h3>DuckDB</h3>
+            <p>In-process analytical database designed for local analytics, CSV/Parquet work, and Python notebooks.</p>
+            <div class="tool-actions">
+              <a href="https://duckdb.org/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://duckdb.org/docs/installation/" target="_blank" rel="noreferrer">Install</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">Enterprise relational</span>
+            <h3>SQL Server Developer</h3>
+            <p>Microsoft relational database platform often used in enterprise BI, reporting, and data warehouse workflows.</p>
+            <div class="tool-actions">
+              <a href="https://www.microsoft.com/en-us/sql-server" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads" target="_blank" rel="noreferrer">Download</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">Enterprise relational</span>
+            <h3>Oracle Database XE</h3>
+            <p>Free edition of Oracle Database for learning SQL, enterprise database concepts, and PL/SQL basics.</p>
+            <div class="tool-actions">
+              <a href="https://www.oracle.com/database/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://www.oracle.com/database/technologies/xe-downloads.html" target="_blank" rel="noreferrer">Download XE</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <div class="section-heading">
+          <p class="eyebrow">SQL Clients</p>
+          <h2>GUI tools for writing and managing SQL</h2>
+        </div>
+        <div class="tool-grid">
+          <article class="tool-card">
+            <span class="tool-type">PostgreSQL client</span>
+            <h3>pgAdmin</h3>
+            <p>Official PostgreSQL administration GUI. Good for beginners because it shows servers, databases, schemas, and tables visually.</p>
+            <div class="tool-actions">
+              <a href="https://www.pgadmin.org/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://www.pgadmin.org/download/" target="_blank" rel="noreferrer">Download</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">Universal SQL client</span>
+            <h3>DBeaver Community</h3>
+            <p>Popular multi-database client for PostgreSQL, MySQL, SQLite, SQL Server, Oracle, and many others.</p>
+            <div class="tool-actions">
+              <a href="https://dbeaver.io/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://dbeaver.io/download/" target="_blank" rel="noreferrer">Download</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">Universal SQL client</span>
+            <h3>Beekeeper Studio</h3>
+            <p>Clean SQL client for students who want a simpler interface for querying multiple database systems.</p>
+            <div class="tool-actions">
+              <a href="https://www.beekeeperstudio.io/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://www.beekeeperstudio.io/get" target="_blank" rel="noreferrer">Download</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">Professional IDE</span>
+            <h3>DataGrip</h3>
+            <p>JetBrains database IDE. Powerful for professional SQL work, but not required for this course.</p>
+            <div class="tool-actions">
+              <a href="https://www.jetbrains.com/datagrip/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://www.jetbrains.com/datagrip/download/" target="_blank" rel="noreferrer">Download</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-band muted">
+        <div class="section-heading">
+          <p class="eyebrow">Python SQL Stack</p>
+          <h2>Python libraries for SQL and analytics</h2>
+        </div>
+        <div class="tool-grid">
+          <article class="tool-card">
+            <span class="tool-type">Data analysis</span>
+            <h3>pandas</h3>
+            <p>Core Python library for DataFrames. Use it to read SQL query results, clean data, export CSV files, and create analysis tables.</p>
+            <div class="tool-actions">
+              <a href="https://pandas.pydata.org/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://pandas.pydata.org/docs/getting_started/install.html" target="_blank" rel="noreferrer">Install</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">SQL toolkit</span>
+            <h3>SQLAlchemy</h3>
+            <p>Python SQL toolkit and ORM. In this course, it is mainly used to create database connections from Python.</p>
+            <div class="tool-actions">
+              <a href="https://www.sqlalchemy.org/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://docs.sqlalchemy.org/en/20/intro.html#installation" target="_blank" rel="noreferrer">Install</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">PostgreSQL driver</span>
+            <h3>psycopg</h3>
+            <p>Modern PostgreSQL adapter for Python. Required when Python needs to connect directly to PostgreSQL.</p>
+            <div class="tool-actions">
+              <a href="https://www.psycopg.org/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://www.psycopg.org/psycopg3/docs/basic/install.html" target="_blank" rel="noreferrer">Install</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">Legacy PostgreSQL driver</span>
+            <h3>psycopg2</h3>
+            <p>Older PostgreSQL driver still used by many tutorials and code examples, including many SQLAlchemy connection strings.</p>
+            <div class="tool-actions">
+              <a href="https://www.psycopg.org/docs/" target="_blank" rel="noreferrer">Docs</a>
+              <a href="https://pypi.org/project/psycopg2-binary/" target="_blank" rel="noreferrer">PyPI</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">Notebook SQL</span>
+            <h3>JupySQL</h3>
+            <p>Lets students run SQL directly inside Jupyter notebooks with cell magics, useful for teaching and reports.</p>
+            <div class="tool-actions">
+              <a href="https://jupysql.ploomber.io/" target="_blank" rel="noreferrer">Official</a>
+              <a href="https://jupysql.ploomber.io/en/latest/quick-start.html" target="_blank" rel="noreferrer">Quick start</a>
+            </div>
+          </article>
+          <article class="tool-card">
+            <span class="tool-type">Local analytics</span>
+            <h3>duckdb Python</h3>
+            <p>Run analytical SQL directly from Python over local files such as CSV and Parquet without a database server.</p>
+            <div class="tool-actions">
+              <a href="https://duckdb.org/docs/api/python/overview.html" target="_blank" rel="noreferrer">Python API</a>
+              <a href="https://duckdb.org/docs/installation/" target="_blank" rel="noreferrer">Install</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <div class="section-heading">
+          <p class="eyebrow">Recommended Setup</p>
+          <h2>What students should install for MIS 443</h2>
+        </div>
+        <div class="setup-panel">
+          <div>
+            <h3>Minimum setup</h3>
+            <ol>
+              <li>Install PostgreSQL.</li>
+              <li>Install pgAdmin or use psql.</li>
+              <li>Restore the <code>sqlda</code> database from <code>data.dump</code>.</li>
+              <li>Install Python and Jupyter Notebook or Anaconda.</li>
+              <li>Install <code>pandas</code>, <code>SQLAlchemy</code>, and <code>psycopg</code> or <code>psycopg2</code>.</li>
+            </ol>
+          </div>
+          <pre><code>pip install pandas sqlalchemy psycopg psycopg2-binary jupyter</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>MIS 443 - Tools</p>
+      <p>Database engines, SQL clients, and Python libraries for analytics workflows.</p>
+      <p>Author: BBS - SMABI LAB</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

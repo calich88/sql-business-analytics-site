@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dataset - MIS 443</title>
+  <style>
+
+    :root { --ink:#111827; --muted:#5b6475; --line:#d8dee9; --soft:#f6f8fb; --card:#ffffff; --accent:#1f6feb; --accent2:#0f766e; --warn:#b45309; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:var(--ink); background:#eef2f7; line-height:1.45; }
+    .page { max-width: 1120px; margin: 24px auto; background:var(--card); padding: 34px; box-shadow:0 8px 28px rgba(15,23,42,.12); border-radius:8px; }
+    h1 { margin:0 0 8px; font-size:30px; color:#0f172a; }
+    h2 { margin:28px 0 10px; font-size:22px; border-bottom:2px solid var(--line); padding-bottom:8px; }
+    h3 { margin:0; font-size:17px; }
+    p { margin:8px 0; }
+    .subtitle { color:var(--muted); font-size:15px; }
+    .source { margin-top:12px; padding:12px 14px; background:#f0f7ff; border-left:4px solid var(--accent); border-radius:8px; }
+    .source code, code { background:#eef2f7; padding:2px 5px; border-radius:5px; font-family: Consolas, 'Courier New', monospace; font-size: 90%; }
+    .grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; margin-top:14px; }
+    .metric { background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:14px; }
+    .metric .num { font-size:22px; font-weight:700; color:#0f172a; }
+    .metric .label { color:var(--muted); font-size:13px; }
+    .note { background:#fff7ed; border-left:4px solid var(--warn); padding:12px 14px; border-radius:8px; margin:14px 0; }
+    .diagram-wrap { overflow-x:auto; background:#fbfdff; border:1px solid var(--line); border-radius:8px; padding:16px; }
+    svg text { font-family: Arial, Helvetica, sans-serif; }
+    .legend { display:flex; gap:10px; flex-wrap:wrap; color:var(--muted); font-size:13px; margin-top:10px; }
+    .pill { border:1px solid var(--line); border-radius:999px; padding:5px 10px; background:#fff; }
+    .schema-card { border:1px solid var(--line); border-radius:8px; margin:14px 0; overflow:hidden; }
+    .schema-head { display:flex; justify-content:space-between; align-items:center; background:#f8fafc; padding:12px 14px; border-bottom:1px solid var(--line); }
+    .schema-head span { color:var(--muted); font-size:13px; }
+    table { width:100%; border-collapse:collapse; }
+    th, td { text-align:left; padding:8px 10px; border-bottom:1px solid #edf1f7; vertical-align:top; font-size:13px; }
+    th { background:#fbfdff; font-weight:700; color:#334155; }
+    tr:last-child td { border-bottom:none; }
+    .two-col { display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+    .mini-table td:first-child { width:35%; }
+    .tasks { background:#f8fafc; border:1px solid var(--line); padding:14px 18px; border-radius:8px; }
+    .tasks li { margin:5px 0; }
+    @media print { body { background:#fff; } .page { box-shadow:none; margin:0; border-radius:0; } }
+    @media (max-width: 800px) { .grid, .two-col { grid-template-columns:1fr; } .page { padding:20px; margin:0; border-radius:0; } }
+  
+    .site-shell { background:#eef2f7; }
+    .site-shell .topbar { position: sticky; top:0; z-index:10; display:flex; align-items:center; justify-content:space-between; min-height:72px; padding:0 6vw; background:rgba(255,255,255,.94); border-bottom:1px solid #dce3ea; backdrop-filter:blur(14px); }
+    .site-shell .brand { display:inline-flex; align-items:center; gap:12px; color:#17202a; text-decoration:none; font-weight:800; }
+    .site-shell .brand-mark { display:grid; place-items:center; min-width:72px; height:42px; padding:0 12px; border-radius:8px; color:#fff; background:#1769aa; font-size:13px; }
+    .site-shell .nav { display:flex; align-items:center; gap:22px; color:#647184; font-size:14px; font-weight:700; overflow-x:auto; }
+    .site-shell .nav a { color:inherit; text-decoration:none; white-space:nowrap; }
+    .site-shell .nav a:hover { color:#1769aa; }
+    .site-shell footer { display:flex; justify-content:space-between; gap:20px; padding:30px 6vw; border-top:1px solid #dce3ea; background:#fff; color:#647184; line-height:1.6; }
+    .site-shell footer p { margin:0; }
+    .resource-links { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:14px; }
+    .resource-links a { display:block; color:var(--ink); text-decoration:none; background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:14px; }
+    .resource-links a:hover { border-color:var(--accent); background:#f0f7ff; }
+    .resource-links strong { color:#0f172a; }
+    @media (max-width: 900px) { .site-shell .topbar { align-items:flex-start; flex-direction:column; gap:12px; padding:14px 5vw; } .site-shell .nav { width:100%; gap:14px; padding-bottom:4px; } .resource-links { grid-template-columns:1fr; } .site-shell footer { flex-direction:column; } }
+
+  </style>
+</head>
+<body class="site-shell">
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="MIS 443 home">
+      <span class="brand-mark">MIS 443</span>
+      <span>Business Data Management</span>
+    </a>
+    <nav class="nav" aria-label="Course navigation">
+      <a href="index.html">Overview</a>
+      <a href="dataset.html">Dataset</a>
+      <a href="cheatsheets.html">Cheatsheets</a>
+      <a href="practice.html">Practice</a>
+      <a href="tools.html">Tools</a>
+      <a href="mooc.html">MOOC</a>
+      <a href="project.html">Project</a>
+      <a href="quiz.html">Quiz</a>
+    </nav>
+  </header>
+  <main class="page">
+    <header>
+      <h1>SQLDA Sample Database Overview</h1>
+      <p class="subtitle">A student-friendly introduction to the sample database used in <em>SQL for Data Analytics, Fourth Edition</em>.</p>
+      <div class="source">
+        <strong>Dataset source:</strong><br />
+        <code>https://github.com/PacktPublishing/SQL-for-Data-Analytics-Fourth-Edition/tree/main/Datasets</code><br />
+        <strong>Main file:</strong> <code>data.dump</code> &nbsp; | &nbsp; <strong>Database name used in class:</strong> <code>sqlda</code>
+      </div>
+    </header>
+
+    <section>
+      <h2>1. What is this dataset about?</h2>
+      <p>The <code>sqlda</code> database simulates a business analytics environment for a vehicle sales company. It contains customer profiles, sales transactions, products, dealerships, salespeople, marketing email interactions, geographic information, public transportation information by ZIP code, and survey feedback.</p>
+      <p>Students will use this dataset to practice relational database concepts, data exploration, filtering, joins, aggregation, window functions, JSON processing, text processing, date/time analysis, geospatial analysis, and basic analytics using SQL.</p>
+      <div class="grid">
+        <div class="metric"><div class="num">13</div><div class="label">Tables in the dump</div></div>
+        <div class="metric"><div class="num">50,000</div><div class="label">Customer records</div></div>
+        <div class="metric"><div class="num">37,711</div><div class="label">Sales transactions</div></div>
+        <div class="metric"><div class="num">418,158</div><div class="label">Email records</div></div>
+      </div>
+      <div class="note"><strong>Teaching note:</strong> The database is not a perfectly normalized production database. It is designed as a learning dataset, so some relationships are implied by matching column names rather than formally enforced by foreign-key constraints.</div>
+    </section>
+
+    <section>
+      <h2>2. Main business entities</h2>
+      <div class="two-col">
+        <table class="mini-table">
+          <thead><tr><th>Table</th><th>Main role</th></tr></thead>
+          <tbody>
+            <tr><td><code>customers</code></td><td>Customer demographic, contact, address, and location data.</td></tr>
+            <tr><td><code>sales</code></td><td>Transaction-level records linking customers, products, channels, and dealerships.</td></tr>
+            <tr><td><code>products</code></td><td>Product model, year, type, price, and production period.</td></tr>
+            <tr><td><code>dealerships</code></td><td>Dealership location and operation dates.</td></tr>
+            <tr><td><code>salespeople</code></td><td>Salesperson profile and dealership assignment.</td></tr>
+          </tbody>
+        </table>
+        <table class="mini-table">
+          <thead><tr><th>Table</th><th>Main role</th></tr></thead>
+          <tbody>
+            <tr><td><code>emails</code></td><td>Email marketing events such as sent, opened, clicked, and bounced.</td></tr>
+            <tr><td><code>closest_dealerships</code></td><td>Distance between customers and dealerships.</td></tr>
+            <tr><td><code>public_transportation_by_zip</code></td><td>ZIP-level public transportation indicators.</td></tr>
+            <tr><td><code>customer_sales</code></td><td>JSONB version of customer/sales data for JSON practice.</td></tr>
+            <tr><td><code>customer_survey</code></td><td>Rating and text feedback for survey/text analysis practice.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Conceptual relationship diagram</h2>
+      <div class="diagram-wrap">
+        <svg width="1040" height="520" viewBox="0 0 1040 520" role="img" aria-label="SQLDA database conceptual relationship diagram">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569" /></marker>
+            <style>
+              .box { fill:#ffffff; stroke:#94a3b8; stroke-width:1.4; rx:10; }
+              .main { fill:#eff6ff; stroke:#1f6feb; }
+              .support { fill:#f0fdfa; stroke:#0f766e; }
+              .weak { fill:#fff7ed; stroke:#b45309; }
+              .title { font-size:15px; font-weight:700; fill:#0f172a; }
+              .small { font-size:12px; fill:#475569; }
+              .link { stroke:#475569; stroke-width:1.4; fill:none; marker-end:url(#arrow); }
+              .dash { stroke-dasharray:5 5; }
+            </style>
+          </defs>
+
+          <!-- Boxes -->
+          <rect class="box main" x="40" y="170" width="185" height="96" rx="12" />
+          <text class="title" x="58" y="198">customers</text>
+          <text class="small" x="58" y="220">PK-like: customer_id</text>
+          <text class="small" x="58" y="240">Profile + location</text>
+
+          <rect class="box main" x="315" y="170" width="185" height="110" rx="12" />
+          <text class="title" x="333" y="198">sales</text>
+          <text class="small" x="333" y="220">customer_id</text>
+          <text class="small" x="333" y="240">product_id</text>
+          <text class="small" x="333" y="260">dealership_id</text>
+
+          <rect class="box main" x="590" y="70" width="185" height="96" rx="12" />
+          <text class="title" x="608" y="98">products</text>
+          <text class="small" x="608" y="120">PK-like: product_id</text>
+          <text class="small" x="608" y="140">Model + price</text>
+
+          <rect class="box main" x="590" y="260" width="185" height="96" rx="12" />
+          <text class="title" x="608" y="288">dealerships</text>
+          <text class="small" x="608" y="310">PK-like: dealership_id</text>
+          <text class="small" x="608" y="330">Store location</text>
+
+          <rect class="box main" x="835" y="260" width="165" height="96" rx="12" />
+          <text class="title" x="853" y="288">salespeople</text>
+          <text class="small" x="853" y="310">salesperson_id</text>
+          <text class="small" x="853" y="330">dealership_id</text>
+
+          <rect class="box support" x="40" y="25" width="185" height="96" rx="12" />
+          <text class="title" x="58" y="53">emails</text>
+          <text class="small" x="58" y="75">email_id</text>
+          <text class="small" x="58" y="95">customer_id</text>
+
+          <rect class="box support" x="40" y="340" width="185" height="96" rx="12" />
+          <text class="title" x="58" y="368">closest_dealerships</text>
+          <text class="small" x="58" y="390">customer_id</text>
+          <text class="small" x="58" y="410">dealership_id + distance</text>
+
+          <rect class="box support" x="315" y="360" width="185" height="96" rx="12" />
+          <text class="title" x="333" y="388">public_transportation</text>
+          <text class="small" x="333" y="410">zip_code</text>
+          <text class="small" x="333" y="430">ZIP-level indicators</text>
+
+          <rect class="box weak" x="835" y="70" width="165" height="96" rx="12" />
+          <text class="title" x="853" y="98">survey / JSON</text>
+          <text class="small" x="853" y="120">customer_survey</text>
+          <text class="small" x="853" y="140">customer_sales</text>
+
+          <!-- Links -->
+          <path class="link" d="M225,218 C260,218 280,218 315,218" />
+          <text class="small" x="245" y="207">customer_id</text>
+
+          <path class="link" d="M500,204 C535,170 555,132 590,118" />
+          <text class="small" x="520" y="150">product_id</text>
+
+          <path class="link" d="M500,248 C535,270 555,292 590,308" />
+          <text class="small" x="520" y="292">dealership_id</text>
+
+          <path class="link" d="M775,308 C800,308 812,308 835,308" />
+          <text class="small" x="787" y="296">dealership_id</text>
+
+          <path class="link" d="M132,121 C132,140 132,151 132,170" />
+          <text class="small" x="145" y="148">customer_id</text>
+
+          <path class="link" d="M132,266 C132,292 132,315 132,340" />
+          <text class="small" x="145" y="310">customer_id</text>
+
+          <path class="link" d="M225,388 C350,388 470,356 590,324" />
+          <text class="small" x="342" y="374">dealership_id</text>
+
+          <path class="link dash" d="M225,245 C265,290 285,350 315,396" />
+          <text class="small" x="235" y="350">postal_code ↔ zip_code</text>
+
+          <path class="link dash" d="M225,196 C440,45 660,40 835,100" />
+          <text class="small" x="470" y="62">practice tables</text>
+        </svg>
+      </div>
+      <div class="legend">
+        <span class="pill">Blue = core relational tables</span>
+        <span class="pill">Green = analytical/supporting tables</span>
+        <span class="pill">Orange = practice/special-format tables</span>
+        <span class="pill">Dashed line = useful analytical link, not necessarily an enforced FK</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Schema summary</h2>
+      <section class="schema-card" id="customers">
+      <div class="schema-head"><h3>customers</h3><span>50,000 rows</span></div>
+      <table><thead><tr><th>Column</th><th>Type</th><th>Meaning / Use</th></tr></thead><tbody><tr><td><code>customer_id</code></td><td><code>bigint</code></td><td>Customer identifier; main link to sales, emails, and closest_dealerships</td></tr><tr><td><code>title</code></td><td><code>text</code></td><td>Title</td></tr><tr><td><code>first_name</code></td><td><code>text</code></td><td>First name</td></tr><tr><td><code>last_name</code></td><td><code>text</code></td><td>Last name</td></tr><tr><td><code>suffix</code></td><td><code>text</code></td><td>Name suffix</td></tr><tr><td><code>email</code></td><td><code>text</code></td><td>Email address</td></tr><tr><td><code>gender</code></td><td><code>text</code></td><td>Gender</td></tr><tr><td><code>ip_address</code></td><td><code>text</code></td><td>IP address</td></tr><tr><td><code>phone</code></td><td><code>text</code></td><td>Phone number</td></tr><tr><td><code>street_address</code></td><td><code>text</code></td><td>Street address</td></tr><tr><td><code>city</code></td><td><code>text</code></td><td>City</td></tr><tr><td><code>state</code></td><td><code>text</code></td><td>State</td></tr><tr><td><code>postal_code</code></td><td><code>text</code></td><td>ZIP/postal code</td></tr><tr><td><code>latitude</code></td><td><code>double precision</code></td><td>Latitude</td></tr><tr><td><code>longitude</code></td><td><code>double precision</code></td><td>Longitude</td></tr><tr><td><code>date_added</code></td><td><code>timestamp</code></td><td>Date added</td></tr></tbody></table>
+    </section><section class="schema-card" id="sales">
+      <div class="schema-head"><h3>sales</h3><span>37,711 rows</span></div>
+      <table><thead><tr><th>Column</th><th>Type</th><th>Meaning / Use</th></tr></thead><tbody><tr><td><code>customer_id</code></td><td><code>bigint</code></td><td>Customer who purchased</td></tr><tr><td><code>product_id</code></td><td><code>bigint</code></td><td>Product purchased</td></tr><tr><td><code>sales_transaction_date</code></td><td><code>timestamp</code></td><td>Transaction date</td></tr><tr><td><code>sales_amount</code></td><td><code>double precision</code></td><td>Sales amount</td></tr><tr><td><code>channel</code></td><td><code>text</code></td><td>Sales channel</td></tr><tr><td><code>dealership_id</code></td><td><code>double precision</code></td><td>Dealership associated with the sale</td></tr></tbody></table>
+    </section><section class="schema-card" id="products">
+      <div class="schema-head"><h3>products</h3><span>12 rows</span></div>
+      <table><thead><tr><th>Column</th><th>Type</th><th>Meaning / Use</th></tr></thead><tbody><tr><td><code>product_id</code></td><td><code>bigint</code></td><td>Product identifier</td></tr><tr><td><code>model</code></td><td><code>text</code></td><td>Product model</td></tr><tr><td><code>year</code></td><td><code>bigint</code></td><td>Model year</td></tr><tr><td><code>product_type</code></td><td><code>text</code></td><td>Product category/type</td></tr><tr><td><code>base_msrp</code></td><td><code>numeric</code></td><td>Base price</td></tr><tr><td><code>production_start_date</code></td><td><code>timestamp</code></td><td>Production start</td></tr><tr><td><code>production_end_date</code></td><td><code>timestamp</code></td><td>Production end</td></tr></tbody></table>
+    </section><section class="schema-card" id="dealerships">
+      <div class="schema-head"><h3>dealerships</h3><span>20 rows</span></div>
+      <table><thead><tr><th>Column</th><th>Type</th><th>Meaning / Use</th></tr></thead><tbody><tr><td><code>dealership_id</code></td><td><code>bigint</code></td><td>Dealership identifier</td></tr><tr><td><code>street_address</code></td><td><code>text</code></td><td>Street address</td></tr><tr><td><code>city</code></td><td><code>text</code></td><td>City</td></tr><tr><td><code>state</code></td><td><code>text</code></td><td>State</td></tr><tr><td><code>postal_code</code></td><td><code>text</code></td><td>ZIP/postal code</td></tr><tr><td><code>latitude</code></td><td><code>double precision</code></td><td>Latitude</td></tr><tr><td><code>longitude</code></td><td><code>double precision</code></td><td>Longitude</td></tr><tr><td><code>date_opened</code></td><td><code>timestamp</code></td><td>Opening date</td></tr><tr><td><code>date_closed</code></td><td><code>timestamp</code></td><td>Closing date</td></tr></tbody></table>
+    </section><section class="schema-card" id="salespeople">
+      <div class="schema-head"><h3>salespeople</h3><span>300 rows</span></div>
+      <table><thead><tr><th>Column</th><th>Type</th><th>Meaning / Use</th></tr></thead><tbody><tr><td><code>salesperson_id</code></td><td><code>bigint</code></td><td>Salesperson identifier</td></tr><tr><td><code>dealership_id</code></td><td><code>bigint</code></td><td>Dealership where the salesperson works</td></tr><tr><td><code>title</code></td><td><code>text</code></td><td>Title</td></tr><tr><td><code>first_name</code></td><td><code>text</code></td><td>First name</td></tr><tr><td><code>last_name</code></td><td><code>text</code></td><td>Last name</td></tr><tr><td><code>suffix</code></td><td><code>text</code></td><td>Name suffix</td></tr><tr><td><code>username</code></td><td><code>text</code></td><td>Username</td></tr><tr><td><code>gender</code></td><td><code>text</code></td><td>Gender</td></tr><tr><td><code>hire_date</code></td><td><code>timestamp</code></td><td>Hire date</td></tr><tr><td><code>termination_date</code></td><td><code>timestamp</code></td><td>Termination date</td></tr></tbody></table>
+    </section><section class="schema-card" id="emails">
+      <div class="schema-head"><h3>emails</h3><span>418,158 rows</span></div>
+      <table><thead><tr><th>Column</th><th>Type</th><th>Meaning / Use</th></tr></thead><tbody><tr><td><code>email_id</code></td><td><code>bigint</code></td><td>Email identifier</td></tr><tr><td><code>customer_id</code></td><td><code>bigint</code></td><td>Customer who received the email</td></tr><tr><td><code>email_subject</code></td><td><code>text</code></td><td>Email subject</td></tr><tr><td><code>opened</code></td><td><code>text</code></td><td>Whether opened</td></tr><tr><td><code>clicked</code></td><td><code>text</code></td><td>Whether clicked</td></tr><tr><td><code>bounced</code></td><td><code>text</code></td><td>Whether bounced</td></tr><tr><td><code>sent_date</code></td><td><code>timestamp</code></td><td>Sent date</td></tr><tr><td><code>opened_date</code></td><td><code>timestamp</code></td><td>Opened date</td></tr><tr><td><code>clicked_date</code></td><td><code>timestamp</code></td><td>Clicked date</td></tr></tbody></table>
+    </section><section class="schema-card" id="closest_dealerships">
+      <div class="schema-head"><h3>closest_dealerships</h3><span>44,533 rows</span></div>
+      <table><thead><tr><th>Column</th><th>Type</th><th>Meaning / Use</th></tr></thead><tbody><tr><td><code>customer_id</code></td><td><code>bigint</code></td><td>Customer identifier</td></tr><tr><td><code>dealership_id</code></td><td><code>bigint</code></td><td>Nearest/related dealership identifier</td></tr><tr><td><code>distance</code></td><td><code>double precision</code></td><td>Distance between customer and dealership</td></tr></tbody></table>
+    </section><section class="schema-card" id="public_transportation_by_zip">
+      <div class="schema-head"><h3>public_transportation_by_zip</h3><span>15,412 rows</span></div>
+      <table><thead><tr><th>Column</th><th>Type</th><th>Meaning / Use</th></tr></thead><tbody><tr><td><code>level_0</code></td><td><code>bigint</code></td><td>Index column</td></tr><tr><td><code>index</code></td><td><code>bigint</code></td><td>Index column</td></tr><tr><td><code>zip_code</code></td><td><code>text</code></td><td>ZIP code</td></tr><tr><td><code>public_transportation_pct</code></td><td><code>double precision</code></td><td>Public transportation percentage</td></tr><tr><td><code>public_transportation_population</code></td><td><code>bigint</code></td><td>Population using public transportation</td></tr></tbody></table>
+    </section>
+      <h2>5. Supporting and practice tables</h2>
+      <section class="schema-card" id="customer_sales">
+      <div class="schema-head"><h3>customer_sales</h3><span>50,000 rows</span></div>
+      <table><thead><tr><th>Column</th><th>Type</th><th>Meaning / Use</th></tr></thead><tbody><tr><td><code>customer_json</code></td><td><code>jsonb</code></td><td>JSONB representation of customer/sales data for JSON practice</td></tr></tbody></table>
+    </section><section class="schema-card" id="customer_sales_copy">
+      <div class="schema-head"><h3>customer_sales_copy</h3><span>50,000 rows</span></div>
+      <table><thead><tr><th>Column</th><th>Type</th><th>Meaning / Use</th></tr></thead><tbody><tr><td><code>customer_json</code></td><td><code>jsonb</code></td><td>Copy of customer_sales for COPY/import-export practice</td></tr></tbody></table>
+    </section><section class="schema-card" id="customer_survey">
+      <div class="schema-head"><h3>customer_survey</h3><span>32 rows</span></div>
+      <table><thead><tr><th>Column</th><th>Type</th><th>Meaning / Use</th></tr></thead><tbody><tr><td><code>rating</code></td><td><code>integer</code></td><td>Survey rating</td></tr><tr><td><code>feedback</code></td><td><code>text</code></td><td>Customer feedback text</td></tr></tbody></table>
+    </section><section class="schema-card" id="countries">
+      <div class="schema-head"><h3>countries</h3><span>0 rows</span></div>
+      <table><thead><tr><th>Column</th><th>Type</th><th>Meaning / Use</th></tr></thead><tbody><tr><td><code>key</code></td><td><code>integer</code></td><td>Country key; primary key in dump</td></tr><tr><td><code>name</code></td><td><code>text</code></td><td>Country name; unique in dump</td></tr><tr><td><code>founding_year</code></td><td><code>integer</code></td><td>Founding year</td></tr><tr><td><code>capital</code></td><td><code>text</code></td><td>Capital city</td></tr></tbody></table>
+    </section><section class="schema-card" id="top_cities_data">
+      <div class="schema-head"><h3>top_cities_data</h3><span>20 rows</span></div>
+      <table><thead><tr><th>Column</th><th>Type</th><th>Meaning / Use</th></tr></thead><tbody><tr><td><code>city</code></td><td><code>text</code></td><td>City</td></tr><tr><td><code>number_of_customers</code></td><td><code>bigint</code></td><td>Customer count</td></tr><tr><td><code>female</code></td><td><code>bigint</code></td><td>Female count</td></tr><tr><td><code>male</code></td><td><code>bigint</code></td><td>Male count</td></tr></tbody></table>
+    </section>
+    </section>
+
+    <section>
+      <h2>6. Starter exploration questions for students</h2>
+      <ol class="tasks">
+        <li>Which tables represent business entities, and which tables represent business events?</li>
+        <li>Which columns can be used to join <code>customers</code>, <code>sales</code>, and <code>products</code>?</li>
+        <li>Which table can help analyze email campaign performance?</li>
+        <li>Which tables contain geographic or location-related information?</li>
+        <li>Why might <code>customer_sales</code> be useful for learning JSONB even though relational tables already exist?</li>
+      </ol>
+    </section>
+  
+
+    <section>
+      <h2>7. Other popular datasets for SQL practice</h2>
+      <p>Besides the main <code>sqlda</code> database, students can use the following public/sample datasets for additional SQL practice. Always check licensing, data quality, and whether the dataset is suitable for the intended learning goal.</p>
+      <div class="resource-links">
+        <a href="https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/" target="_blank" rel="noreferrer">
+          <strong>Dvdrental</strong><br />PostgreSQL sample database for joins, customers, inventory, rentals, and payments.
+        </a>
+        <a href="https://github.com/neondatabase-labs/postgres-sample-dbs" target="_blank" rel="noreferrer">
+          <strong>Postgres Sample DBs</strong><br />Collection of PostgreSQL-ready sample databases including Northwind and Pagila.
+        </a>
+        <a href="https://github.com/pthom/northwind_psql" target="_blank" rel="noreferrer">
+          <strong>Northwind PostgreSQL</strong><br />Classic business database with customers, orders, products, suppliers, and employees.
+        </a>
+        <a href="https://github.com/devrimgunduz/pagila" target="_blank" rel="noreferrer">
+          <strong>Pagila</strong><br />PostgreSQL port of Sakila, useful for rental, inventory, customer, and payment analysis.
+        </a>
+        <a href="https://www.kaggle.com/datasets" target="_blank" rel="noreferrer">
+          <strong>Kaggle Datasets</strong><br />Large collection of public datasets for analytics projects; licensing varies by dataset.
+        </a>
+        <a href="https://archive.ics.uci.edu/" target="_blank" rel="noreferrer">
+          <strong>UCI Machine Learning Repository</strong><br />Public datasets for data preparation, analytics, and modeling practice.
+        </a>
+      </div>
+    </section>
+
+  </main>
+  <footer>
+    <p>MIS 443 - Dataset</p>
+    <p>Main SQLDA schema, table guide, and extra practice data sources.</p>
+    <p>Author: BBS - SMABI LAB</p>
+  </footer>
+</body>
+</html>

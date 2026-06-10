@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MIS 443 Learning Hub</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="MIS 443 home">
+        <span class="brand-mark">MIS 443</span>
+        <span>Business Data Management</span>
+      </a>
+      <nav class="nav" aria-label="Course navigation">
+        <a href="index.html">Overview</a>
+        <a href="dataset.html">Dataset</a>
+        <a href="cheatsheets.html">Cheatsheets</a>
+        <a href="practice.html">Practice</a>
+        <a href="tools.html">Tools</a>
+        <a href="mooc.html">MOOC</a>
+        <a href="project.html">Project</a>
+        <a href="quiz.html">Quiz</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="overview">
+        <div class="hero-copy">
+          <p class="eyebrow">SQL, Databases, Python, and Analytics</p>
+          <h1>MIS 443 Learning Hub</h1>
+          <p class="hero-text">
+            This website supports MIS 443 students and self-learners who want to understand how business data is
+            stored, queried, prepared, analyzed, and explained. It combines database
+            concepts, PostgreSQL practice, Python workflows, ETL thinking, analytics
+            cases, and self-study resources in one practical learning space.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="practice.html">Open Practice Menu</a>
+            <a class="button secondary" href="tools.html">See Learning Tools</a>
+          </div>
+        </div>
+
+        <aside class="hero-media" aria-label="MIS 443 analytics workspace illustration">
+          <img
+            src="assets/images/overview-analytics-workspace.png"
+            alt="MIS 443 analytics workspace showing SQL queries, database schema, ETL flow, Python practice, and business dashboard"
+          />
+          <div class="course-card" aria-label="Course facts">
+            <div class="course-card-header">
+              <span>Learning Path</span>
+              <strong>Business Analytics</strong>
+            </div>
+            <dl>
+              <div>
+                <dt>Primary Focus</dt>
+                <dd>Business Data Management</dd>
+              </div>
+              <div>
+                <dt>Main Tools</dt>
+                <dd>PostgreSQL, SQL, Python</dd>
+              </div>
+              <div>
+                <dt>Practice Data</dt>
+                <dd>SQLDA sample database</dd>
+              </div>
+              <div>
+                <dt>Audience</dt>
+                <dd>Business analytics learners</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </section>
+
+      <section class="summary-band">
+        <div class="summary-item">
+          <span>10</span>
+          <p>core topics</p>
+        </div>
+        <div class="summary-item">
+          <span>20</span>
+          <p>class lessons</p>
+        </div>
+        <div class="summary-item">
+          <span>7</span>
+          <p>learning outcome areas</p>
+        </div>
+        <div class="summary-item">
+          <span>SQL + Python</span>
+          <p>main technical stack</p>
+        </div>
+      </section>
+
+      <section class="visual-band" aria-label="MIS 443 learning flow">
+        <img
+          src="assets/images/overview-learning-flow.png"
+          alt="MIS 443 learning flow from database design to SQL queries, ETL cleaning, Python analysis, and business decision"
+        />
+      </section>
+
+      <section class="content-band">
+        <div class="section-heading">
+          <p class="eyebrow">Learning Objectives</p>
+          <h2>What learners will practice</h2>
+        </div>
+        <div class="objective-grid">
+          <article>
+            <span>01</span>
+            <h3>Understand business databases</h3>
+            <p>Analyze concepts, technologies, and methods related to databases, data warehouses, and decision support systems.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Apply ETL techniques</h3>
+            <p>Extract, transform, and load data across business domains while maintaining data quality and usability.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Use SQL and Python</h3>
+            <p>Query, preprocess, analyze, and explain business data using practical tools used by analysts.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Work responsibly</h3>
+            <p>Adapt to new data management techniques with awareness of privacy, legal, and professional responsibilities.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-band muted" id="outcomes">
+        <div class="section-heading">
+          <p class="eyebrow">Knowledge, Skills, Responsibility</p>
+          <h2>Learning outcomes</h2>
+        </div>
+        <div class="outcome-layout">
+          <div>
+            <h3>Knowledge</h3>
+            <div id="knowledgeOutcomes" class="outcome-list"></div>
+          </div>
+          <div>
+            <h3>Skills</h3>
+            <div id="skillOutcomes" class="outcome-list"></div>
+          </div>
+          <div>
+            <h3>Autonomy and Responsibility</h3>
+            <div id="responsibilityOutcomes" class="outcome-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-band" id="topics">
+        <div class="section-heading">
+          <p class="eyebrow">Learning Content</p>
+          <h2>10-topic learning path</h2>
+        </div>
+        <div class="topic-grid" id="topicGrid"></div>
+      </section>
+
+      <section class="content-band muted" id="assessment">
+        <div class="section-heading">
+          <p class="eyebrow">Practice Checks</p>
+          <h2>How learning can be evaluated</h2>
+        </div>
+        <div class="assessment-grid" id="assessmentGrid"></div>
+        <div class="exam-panel">
+          <h3>Final examination blueprint</h3>
+          <p>
+            The final computer-based exam includes six practical questions covering
+            database/table creation, basic SQL, SQL functions, multiple-table queries,
+            common table expressions, and window functions.
+          </p>
+        </div>
+      </section>
+
+      <section class="next-band">
+        <div>
+          <p class="eyebrow">Learning Workspace</p>
+          <h2>Practice, tools, datasets, cheatsheets, MOOC resources, projects, and quizzes live on separate pages.</h2>
+        </div>
+        <p>
+          Use the top menu to explore the SQLDA dataset, workbook-style chapter
+          practices, PostgreSQL/Python setup notes, chapter cheatsheets, extra MOOC
+          resources, project guidance, and quiz workspace.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>MIS 443 Learning Hub</p>
+      <p>SQL, PostgreSQL, Python, ETL, data warehousing, and business analytics.</p>
+      <p>Author: BBS - SMABI LAB</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
